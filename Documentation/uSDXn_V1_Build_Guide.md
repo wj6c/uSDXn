@@ -31,7 +31,6 @@ The design is divided into two main functional sections:
 The Analog Core contains the radio circuitry, including:
 
 - RF receive and transmit circuitry
-- Frequency conversion
 - RF power amplifier
 - RF filtering
 - Audio circuitry
