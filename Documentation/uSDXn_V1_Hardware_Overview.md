@@ -13,8 +13,6 @@ This separation is one of the main design concepts of uSDXn.
 
 The purpose is to keep the radio circuitry and the digital control circuitry organized as independent functional blocks, making the design easier to understand, build, test, modify, and develop.
 
----
-
 ## Main Hardware Architecture
 
 The uSDXn V1 consists of:
@@ -33,9 +31,7 @@ The Controller communicates with the Analog Core through defined electrical conn
 
 This architecture allows future controllers, displays, interfaces, and other experimental modules to be considered without requiring a complete redesign of the Analog Core.
 
----
-
-# Analog Core
+## Analog Core
 
 The Analog Core contains the main radio circuitry.
 
@@ -43,7 +39,7 @@ It is responsible for the RF, receive, transmit, frequency conversion, audio, an
 
 The Analog Core is divided into several functional areas.
 
-## RF Receive Section
+### RF Receive Section
 
 The receive section processes the incoming RF signal and converts it into the appropriate signals for the SDR architecture.
 
@@ -51,9 +47,7 @@ The receiver includes the analog RF path, frequency conversion, filtering, and a
 
 The detailed circuit is documented in the Analog Core schematics provided in the Hardware directory.
 
----
-
-## RF Transmit Section
+### RF Transmit Section
 
 The transmitter generates the RF output signal and drives the RF power amplifier.
 
@@ -71,9 +65,7 @@ The RF output network is designed for the 40-meter band.
 
 The RF filter values are subject to experimental verification during the V1 testing process.
 
----
-
-## Frequency Generation
+### Frequency Generation
 
 The uSDXn V1 uses an Si5351 frequency synthesizer.
 
@@ -82,8 +74,6 @@ The Si5351 provides the clock and RF signals required by the transceiver archite
 The frequency synthesizer is controlled by the ATmega328P-based Controller.
 
 The exact frequency relationships and configuration are documented in the technical documentation and firmware-related material.
-
----
 
 ## Audio Section
 
@@ -94,8 +84,6 @@ The LM386 provides the final audio amplification stage for the internal speaker 
 The audio section is designed to remain simple and accessible for experimentation.
 
 Audio component values and performance may be refined during testing.
-
----
 
 # Controller
 
@@ -115,8 +103,6 @@ The Controller includes:
 
 The Controller is intended to be relatively independent from the RF circuitry.
 
----
-
 ## Display
 
 The V1 uses a standard 1602A LCD.
@@ -127,8 +113,6 @@ The display interface is controlled by the ATmega328P.
 
 Future versions may experiment with different display technologies while retaining the modular concept.
 
----
-
 ## Rotary Encoder
 
 A mechanical rotary encoder is used for frequency control and user interaction.
@@ -137,8 +121,6 @@ The encoder provides rotational input to the Controller.
 
 Additional push-button functions may be used for menu navigation and other radio controls.
 
----
-
 ## Push Buttons
 
 The V1 includes simple push-button controls connected to the Controller.
@@ -146,8 +128,6 @@ The V1 includes simple push-button controls connected to the Controller.
 These controls provide additional user input for radio operation.
 
 The exact firmware functions assigned to the buttons may evolve as the uSDXn V1 firmware development progresses.
-
----
 
 ## PTT
 
@@ -159,8 +139,6 @@ The external microphone interface follows a K1-style dual-connector concept usin
 
 The exact connector pin assignments are documented in the corresponding schematic.
 
----
-
 ## CW Input
 
 The V1 provides a basic CW input.
@@ -168,8 +146,6 @@ The V1 provides a basic CW input.
 The initial design uses a simple switch-based input connected to the Controller.
 
 The hardware leaves room for future experimentation with more advanced CW key or keyer arrangements.
-
----
 
 # Power Supply
 
@@ -188,11 +164,9 @@ The V1 power architecture includes:
 
 The power supply is documented separately in:
 
-`Hardware/Analog_Core/uSDXn_V1_Power_Supply_Schematic.pdf`
+Hardware/Analog_Core/uSDXn_V1_Power_Supply_Schematic.pdf
 
 The power supply should be tested independently before connecting power to the complete radio.
-
----
 
 # External Connections
 
@@ -215,24 +189,122 @@ The front-panel audio connections use a dual-connector arrangement consisting of
 
 This arrangement is intended to support commonly available microphone and accessory connections while maintaining a compact front-panel layout.
 
----
-
 # Modular Architecture
 
 One of the main goals of uSDXn is to separate the radio into functional modules.
 
-The V1 architecture provides a clear distinction between:
+The V1 architecture provides a clear distinction between the Controller and Analog Core.
 
-```text
-Controller
-     │
-     │
-     ▼
-Analog Core
-     │
-     ├── Receiver
-     ├── Transmitter
-     ├── RF Power Amplifier
-     ├── RF Filter
-     ├── Audio
-     └── Antenna Interface
+The Controller communicates with the Analog Core through defined electrical interfaces.
+
+This approach makes it possible to experiment with different controller implementations in future versions.
+
+Potential future controller experiments may include different microcontrollers, displays, control interfaces, or digital processing systems.
+
+These possibilities are part of the modular development concept and are not necessarily part of the V1 release.
+
+# Through-Hole Design
+
+The first official uSDXn V1 hardware release is intended primarily for through-hole construction.
+
+The purpose of this approach is to make the hardware more accessible to builders and experimenters who want to assemble and understand the circuit themselves.
+
+Future versions may include more extensive surface-mount implementation for smaller size or professional assembly.
+
+# 40-Meter Operation
+
+The initial uSDXn V1 design is intended for the 40-meter amateur radio band.
+
+The RF filtering, transmitter output network, and frequency configuration are therefore designed around 40-meter operation.
+
+Future versions may explore additional amateur radio bands.
+
+# Independent and Combined Hardware
+
+The uSDXn V1 development supports two related hardware configurations.
+
+## Separate Boards
+
+The Analog Core and Controller can be treated as separate functional boards.
+
+This arrangement makes it easier to study and experiment with each section independently.
+
+## Combined Board
+
+A combined version can place the Analog Core and Controller sections together on a single PCB.
+
+The combined configuration is intended to provide a more compact complete transceiver while retaining the same functional architecture.
+
+The separate and combined configurations are part of the uSDXn V1 development and release strategy.
+
+# Hardware Documentation
+
+The hardware documentation is organized in the repository under:
+
+Hardware/
+├── Analog_Core/
+└── Controller/
+
+The Analog Core documentation currently includes:
+
+- Analog Core schematic
+- Audio Amplifier schematic
+- Power Supply schematic
+- Transmitter schematic
+
+The Controller documentation includes:
+
+- Digital Controller schematic
+
+Additional hardware files such as PCB design files, BOM information, manufacturing files, and other documentation will be added as the V1 release is completed.
+
+# Design Philosophy
+
+The uSDXn hardware is designed around several principles:
+
+- Simplicity
+- Accessibility
+- Modular design
+- Practical construction
+- Open hardware
+- Experimentation
+- Education
+- Community collaboration
+
+The project is intended to provide a platform that builders can understand and modify rather than a closed or highly specialized design.
+
+# Future Development
+
+The modular architecture provides a foundation for future development.
+
+Possible future work may include:
+
+- Alternative controllers
+- Different displays
+- Surface-mount versions
+- Additional bands
+- Alternative audio interfaces
+- USB audio interfaces
+- Digital-mode interfaces
+- New RF configurations
+- Additional experimental modules
+
+These possibilities are not part of the initial V1 specification unless specifically documented elsewhere in the repository.
+
+# Project Status
+
+The uSDXn V1 hardware is being tested and refined before the first official release.
+
+Component values, RF filter performance, mechanical details, connector arrangements, and other implementation details may be updated as testing continues.
+
+The repository should be considered the primary source for the current V1 hardware documentation.
+
+---
+
+**uSDXn V1**
+
+Designed by Juan Carlos Berberena Gonzalez — WJ6C
+
+QRP Sponsoring Organization, Inc. (QSO) — 501(c)(3)
+
+CERN-OHL-P-2.0
