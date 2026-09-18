@@ -1,98 +1,104 @@
-# uSDXn
+# uSDXn V1
 
-A simple, buildable, open-source QRP SDR transceiver.
+A simple, buildable, open-source QRP SDR transceiver for 40 meters.
 
-> **The goal is not to create the most advanced uSDX.**  
-> **The goal is to create one that you can actually build.**
+> The goal is not to create the most advanced uSDX.
+> The goal is to create one that you can actually build, understand, and experiment with.
 
 ## About uSDXn
 
-uSDXn is an experimental QRP SDR transceiver project based on the uSDX concept, with a focus on simplicity, affordability, accessibility, and home construction.
+uSDXn is an experimental QRP SDR transceiver project based on the uSDX concept, with a focus on simplicity, accessibility, experimentation, and home construction.
 
-The project is being developed with the idea that a radio should not only be technically capable, but also practical for the experimenter to build and understand.
-## Community
+uSDXn V1 is an independent hardware development based on the uSDX concept and is designed as an open platform for builders, experimenters, and amateur radio operators.
 
-uSDXn is part of the larger uSDX community.
+The project emphasizes practical construction, modularity, learning, testing, and community collaboration.
 
-For discussions, experiments, modifications, troubleshooting, and other
-uSDX projects, visit the uSDX Facebook group:
+## Relationship to uSDX
 
-**uSDX Community on Facebook**  
-https://www.facebook.com/groups/uSDXQrp
-## V1
+uSDXn is based on the uSDX concept and builds upon the work of Guido PE1NNZ and contributors to the original uSDX project.
 
-The first version of uSDXn is being developed for the **40-meter amateur radio band**.
+The original uSDX project and its software remain credited to their respective authors and contributors.
 
-The V1 design uses:
+uSDXn V1 is an independent hardware development and is not the original uSDX hardware design.
 
-- Arduino Nano / ATmega328P controller
+## uSDXn V1 Hardware
+
+The first official uSDXn hardware release is designed for the 40-meter amateur radio band.
+
+The V1 hardware includes:
+
+- ATmega328P / Arduino Nano controller platform
 - Si5351 frequency synthesizer
+- 40-meter RF circuitry
 - Analog Core radio architecture
+- BS170 MOSFET transmitter stage
+- LM386 audio amplifier
 - Standard 1602A LCD
 - Mechanical rotary encoder
-- Simple push-button controls
-- Through-hole components wherever practical
-- Modular Controller and Analog Core architecture
+- Push-button controls
+- Through-hole components for practical community construction
 
-## Architecture
+The first V1 release is designed primarily for learning, experimentation, testing, and home construction.
 
-The uSDXn is divided into two main functional sections:
+Future versions may introduce additional hardware options, including more SMT-oriented designs and other controller platforms.
+
+## Modular Architecture
+
+uSDXn separates the radio into functional hardware sections.
 
 ### Controller
 
 The Controller provides the user interface and control functions.
 
-It includes:
+It may include:
 
 - Microcontroller
 - Display
 - Rotary encoder
 - Push buttons
+- PTT control
+- CW control
 - Controller interface
+
+The V1 controller platform is based on the ATmega328P / Arduino Nano.
 
 ### Analog Core
 
-The Analog Core is the actual radio.
+The Analog Core contains the main radio circuitry.
 
-It contains the RF, mixer, audio, transmit, receive, and associated analog circuitry.
+It includes:
 
-The Controller and Analog Core communicate through a defined interface, allowing the Controller to remain relatively generic.
+- RF receive circuitry
+- RF transmit circuitry
+- Mixer and frequency-generation circuitry
+- Audio circuitry
+- Power amplifier
+- RF filtering
+- Associated analog functions
 
-## Project Status
+The Controller and Analog Core communicate through defined interfaces, allowing future controller and user-interface experiments without requiring a complete redesign of the radio.
 
-**uSDXn V1 is currently under development.**
+## Hardware License
 
-The hardware, PCB, firmware, and documentation are being tested and refined before the first official release.
+The uSDXn V1 hardware design is licensed under:
 
-## Hardware
+**CERN Open Hardware Licence Version 2 — Permissive (CERN-OHL-P-2.0)**
 
-Hardware design files will include:
+You are free to use, study, copy, modify, manufacture, and distribute products based on the covered hardware design, subject to the terms and conditions of the CERN-OHL-P-2.0 license.
 
-- Schematics
-- PCB design files
-- Bill of Materials (BOM)
-- Gerber manufacturing files
-- Assembly information
-
-## Firmware
-
-The uSDXn firmware will be published in this repository as the V1 development progresses.
-
-## Documentation
-
-Documentation will include:
-
-- V1 Build Guide
-- Hardware documentation
-- Assembly information
-- Testing procedures
-- Firmware information
-- Technical notes
-
-## License
-
-The uSDXn hardware design is licensed under the:
-
-**CERN Open Hardware Licence Version 2 – Strongly Reciprocal (CERN-OHL-S-2.0)**
+Please retain the applicable copyright and license notices and identify modifications where required by the license.
 
 See the `LICENSE` file in this repository for the complete license text.
+
+## Repository Structure
+
+```text
+uSDXn/
+├── BOM/
+├── Documentation/
+├── Firmware/
+├── Hardware/
+├── Manufacturing/
+├── uSDX Community/
+├── LICENSE
+└── README.md
